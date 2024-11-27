@@ -1,6 +1,13 @@
+trigger:
+- none
+
+variables:
+  - group: JMeter-scripts
+
 stages:
   - stage: RunJMeter
     displayName: 'Run JMeter Tests'
+    
     jobs:
       - job: RunTests
         displayName: 'Run JMeter Test Plans'
@@ -14,16 +21,16 @@ stages:
               targetType: 'inline'
               script: |
                 set -e
-                echo "Installing OpenJDK $(openjdk_version)..."
+                echo "Installing OpenJDK $(openjdk-version)..."
                 sudo apt-get update
-                sudo apt-get install -y openjdk-$(openjdk_version)-jdk
+                sudo apt-get install -y openjdk-$(openjdk-version)-jdk
                 
-                echo "Downloading JMeter $(jmeter_version)..."
-                wget https://dlcdn.apache.org/jmeter/binaries/apache-jmeter-$(jmeter_version).tgz
-                tar -xvzf apache-jmeter-$(jmeter_version).tgz
+                echo "Downloading JMeter $(jmeter-version)..."
+                wget https://dlcdn.apache.org/jmeter/binaries/apache-jmeter-$(jmeter-version).tgz
+                tar -xvzf apache-jmeter-$(jmeter-version).tgz
                 
                 echo "Setting up JMeter environment variables..."
-                export JMETER_HOME=$(pwd)/apache-jmeter-$(jmeter_version)
+                export JMETER_HOME=$(pwd)/apache-jmeter-$(jmeter-version)
                 export PATH=$JMETER_HOME/bin:$PATH
                 echo "JMeter installed successfully."
                 jmeter -v
