@@ -11,7 +11,7 @@ stages:
       - job: RunTests
         displayName: 'Run JMeter Test Plans'
         pool:
-          vmImage: 'Default'
+          vmImage: 'ubuntu-latest'
         steps:
           # Step 1: Install JMeter
           - task: Bash@3
