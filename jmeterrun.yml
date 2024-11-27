@@ -42,7 +42,7 @@ stages:
               targetType: 'inline'
               script: |
                 set -e
-                SCRIPT_DIR="$(Script_Path)"
+                SCRIPT_DIR="$(Script-Path)"
                 RESULTS_DIR="$(Build.ArtifactStagingDirectory)/jmeter_results"
 
                 echo "Navigating to JMeter scripts directory: $SCRIPT_DIR"
